@@ -1,0 +1,18 @@
+// Place all the styles related to the characters controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+table {
+  thead {
+    background-color: black;
+    th {
+      padding: 0.25em 1em;
+      color: white;
+    }
+  }
+  tbody tr {
+    border-bottom: thin #ccc solid;
+    td {
+      padding: 0 1em;
+    }
+  }
+}

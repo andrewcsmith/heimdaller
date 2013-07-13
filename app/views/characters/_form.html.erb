@@ -1,0 +1,47 @@
+<%= form_for(@character) do |f| %>
+  <% if @character.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@character.errors.count, "error") %> prohibited this character from being saved:</h2>
+
+      <ul>
+      <% @character.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :nickname %><br>
+    <%= f.text_field :nickname %>
+  </div>
+  <div class="field">
+    <%= f.label :level %><br>
+    <%= f.number_field :level %>
+  </div>
+  <% Character::ABILITIES.each do |ability| %>
+    <div class="field">
+      <%= f.label "base_#{ability}".to_sym %>
+      <%= f.number_field "base_#{ability}".to_sym %>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= f.label :base_fortitude %>
+    <%= f.number_field :base_fortitude %>
+  </div>
+  <div class="field">
+    <%= f.label :base_reflex %>
+    <%= f.number_field :base_reflex %>
+  </div>
+  <div class="field">
+    <%= f.label :base_will %>
+    <%= f.number_field :base_will %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
