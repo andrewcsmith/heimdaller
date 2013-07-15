@@ -27,10 +27,10 @@ class Character < ActiveRecord::Base
     define_method "total_#{save}" do
       base = send "base_#{save}"
       ability_mod = send "#{ability}_modifier"
-      magic = send "#{save}_magic_modifier"
-      misc = send "#{save}_miscellaneous_modifier"
-      temp = send "#{save}_temporary_modifier"
-      base + ability_mod + magic + misc + temp
+      magic_mod = send "#{save}_magic_modifier"
+      misc_mod = send "#{save}_miscellaneous_modifier"
+      temp_mod = send "#{save}_temporary_modifier"
+      base + ability_mod + magic_mod + misc_mod + temp_mod
     end
   end
   
