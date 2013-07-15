@@ -41,6 +41,13 @@
     <%= f.label :base_will %>
     <%= f.number_field :base_will %>
   </div>
+  <%
+  Character::SAVES.each do |save, ability|
+    Character::TEMP_TYPES.each do |type| %>
+      <%= f.hidden_field "#{save}_#{type}_modifier".to_sym %>
+    <% end
+  end
+  %>
   <div class="actions">
     <%= f.submit %>
   </div>

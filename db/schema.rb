@@ -11,38 +11,38 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130715211528) do
+ActiveRecord::Schema.define(version: 20130715213014) do
 
   create_table "characters", force: true do |t|
     t.string   "name"
     t.integer  "level"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "base_strength"
-    t.integer  "base_dexterity"
-    t.integer  "base_constitution"
-    t.integer  "base_intelligence"
-    t.integer  "base_wisdom"
-    t.integer  "base_charisma"
+    t.integer  "base_strength",                    default: 10
+    t.integer  "base_dexterity",                   default: 10
+    t.integer  "base_constitution",                default: 10
+    t.integer  "base_intelligence",                default: 10
+    t.integer  "base_wisdom",                      default: 10
+    t.integer  "base_charisma",                    default: 10
     t.integer  "max_hp"
     t.integer  "current_hp"
-    t.integer  "base_fortitude"
-    t.integer  "base_reflex"
-    t.integer  "base_will"
+    t.integer  "base_fortitude",                   default: 0
+    t.integer  "base_reflex",                      default: 0
+    t.integer  "base_will",                        default: 0
     t.integer  "base_speed"
-    t.integer  "base_attack_bonus"
-    t.integer  "current_xp"
-    t.float    "current_money"
+    t.integer  "base_attack_bonus",                default: 0
+    t.integer  "current_xp",                       default: 0
+    t.float    "current_money",                    default: 0.0
     t.string   "nickname"
-    t.integer  "fortitude_magic_modifier"
-    t.integer  "fortitude_miscellaneous_modifier"
-    t.integer  "fortitude_temporary_modifier"
-    t.integer  "reflex_magic_modifier"
-    t.integer  "reflex_miscellaneous_modifier"
-    t.integer  "reflex_temporary_modifier"
-    t.integer  "will_magic_modifier"
-    t.integer  "will_miscellaneous_modifier"
-    t.integer  "will_temporary_modifier"
+    t.integer  "fortitude_magic_modifier",         default: 0
+    t.integer  "fortitude_miscellaneous_modifier", default: 0
+    t.integer  "fortitude_temporary_modifier",     default: 0
+    t.integer  "reflex_magic_modifier",            default: 0
+    t.integer  "reflex_miscellaneous_modifier",    default: 0
+    t.integer  "reflex_temporary_modifier",        default: 0
+    t.integer  "will_magic_modifier",              default: 0
+    t.integer  "will_miscellaneous_modifier",      default: 0
+    t.integer  "will_temporary_modifier",          default: 0
   end
 
 end

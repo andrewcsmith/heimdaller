@@ -62,17 +62,21 @@ class CharactersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_character
-      @character = Character.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def character_params
-      params.require(:character).permit(:name, :nickname, 
-      :level, :base_strength, :base_dexterity, 
-      :base_constitution, :base_intelligence, 
-      :base_wisdom, :base_charisma, :base_fortitude,
-      :base_reflex, :base_will)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_character
+    @character = Character.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def character_params
+    params.require(:character).permit(:name, :nickname, 
+    :level, :base_strength, :base_dexterity, 
+    :base_constitution, :base_intelligence, 
+    :base_wisdom, :base_charisma, :base_fortitude,
+    :base_reflex, :base_will, 
+    :fortitude_magic_modifier, :fortitude_miscellaneous_modifier, :fortitude_temporary_modifier, 
+    :reflex_magic_modifier, :reflex_miscellaneous_modifier, :reflex_temporary_modifier,
+    :will_magic_modifier, :will_miscellaneous_modifier, :will_temporary_modifier)
+  end
 end
