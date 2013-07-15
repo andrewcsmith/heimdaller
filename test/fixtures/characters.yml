@@ -1,8 +1,18 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-one:
-  name: MyString
+valli:
+  name: Valli Heimdaller
+  nickname: Valli
   level: 1
+  base_strength: 18
+  base_dexterity: 14
+  base_constitution: 16
+  base_intelligence: 12
+  base_wisdom: 14
+  base_charisma: 16
+  base_fortitude: 2
+  base_reflex: 2
+  base_will: 0
 
 two:
   name: MyString

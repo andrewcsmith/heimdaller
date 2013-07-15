@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130712231402) do
+ActiveRecord::Schema.define(version: 20130715211528) do
 
   create_table "characters", force: true do |t|
     t.string   "name"
@@ -34,6 +34,15 @@ ActiveRecord::Schema.define(version: 20130712231402) do
     t.integer  "current_xp"
     t.float    "current_money"
     t.string   "nickname"
+    t.integer  "fortitude_magic_modifier"
+    t.integer  "fortitude_miscellaneous_modifier"
+    t.integer  "fortitude_temporary_modifier"
+    t.integer  "reflex_magic_modifier"
+    t.integer  "reflex_miscellaneous_modifier"
+    t.integer  "reflex_temporary_modifier"
+    t.integer  "will_magic_modifier"
+    t.integer  "will_miscellaneous_modifier"
+    t.integer  "will_temporary_modifier"
   end
 
 end
