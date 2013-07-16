@@ -1,4 +1,5 @@
 class Character < ActiveRecord::Base
+  # Validates the presence of the three major items
   validates :name, presence: true
   validates :level, numericality: { only_integer: true, greater_than: 0 }
   validates :nickname, presence: true
@@ -10,13 +11,18 @@ class Character < ActiveRecord::Base
     define_method "#{ability}_modifier" do
       self.send("base_#{ability}") / 2 - 5
     end
-    validates "base_#{ability}".to_sym, numericality: { only_integer: true, greater_than: 0 }
+    # Add validation to each ability score
+    validates "base_#{ability}", numericality: { only_integer: true, greater_than: 0 }
   end
   
   SAVES = {:fortitude => :constitution, :reflex => :dexterity, :will => :wisdom}
   TEMP_TYPES = %w{magic miscellaneous temporary}
   # Create the variables for all modifiers
   SAVES.each do |save, ability|
+    validates "base_#{save}", numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+    TEMP_TYPES.each do |type|
+      validates "#{save}_#{type}_modifier", numericality: { only_integer: true }
+    end
     # Define the total score calculations for each save
     define_method "total_#{save}" do
       base = send "base_#{save}"

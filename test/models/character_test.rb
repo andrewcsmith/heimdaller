@@ -4,7 +4,7 @@ class CharacterTest < ActiveSupport::TestCase
   
   # Verify that a character can be created
   def test_new_character_creation
-    assert Character.new({name: "Valli Heimdaller", nickname: "Valli", level: 6}).valid?
+    assert Character.create({name: "Valli Heimdaller", nickname: "Valli", level: 6}).valid?
   end
   
   # Verify that Valli exists
@@ -47,7 +47,8 @@ class CharacterTest < ActiveSupport::TestCase
   end
   
   def test_that_ability_must_be_positive
-    
+    characters(:valli).base_wisdom = -2
+    assert characters(:valli).invalid?
   end
   
   def test_save_presence
