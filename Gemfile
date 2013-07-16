@@ -40,6 +40,15 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+group :test do
+  gem 'minitest-rails'
+  gem 'minitest-rails-capybara'
+end
+
+gem 'haml'
+gem 'haml-contrib'
+gem 'redcarpet'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
