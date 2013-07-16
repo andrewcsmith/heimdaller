@@ -4,12 +4,36 @@ class CharacterTest < ActiveSupport::TestCase
   
   # Verify that a character can be created
   def test_new_character_creation
-    assert_not_nil Character.new
+    assert Character.new({name: "Valli Heimdaller", nickname: "Valli", level: 6}).valid?
   end
   
   # Verify that Valli exists
   def test_valli_existence
     assert_equal 16, characters(:valli).base_constitution
+  end
+  
+  def test_that_name_is_required
+    assert Character.create(name: nil, nickname: "Marty", level: 1).invalid?, "Nameless character is valid"
+  end
+  
+  def test_that_level_is_required
+    assert Character.create(name: "Martinich", nickname: "Marty", level: nil).invalid?, "Levelless character is valid"
+  end
+  
+  def test_that_level_must_be_numeric
+    assert Character.create(name: "Martinich", nickname: "Marty", level: "Magic").invalid?, "Test level character is valid"
+  end
+  
+  def test_that_level_must_be_integer
+    assert Character.create(name: "Martinich", nickname: "Marty", level: 2.6).invalid?, "Test float character is valid"
+  end
+  
+  def test_that_level_must_be_greater_than_0
+    assert Character.create(name: "Martinich", nickname: "Marty", level: -1).invalid?, "Level number out of range"
+  end
+  
+  def test_that_nickname_is_required
+    assert Character.create(name: "Martinich", nickname: nil, level: 1).invalid?, "Nicknameless character is valid"
   end
   
   # Verify that unspecified ability values default to 10

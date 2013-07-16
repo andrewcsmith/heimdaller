@@ -1,4 +1,8 @@
 class Character < ActiveRecord::Base
+  validates :name, presence: true
+  validates :level, numericality: { only_integer: true, greater_than: 0 }
+  validates :nickname, presence: true
+  
   ABILITIES = %w{strength dexterity constitution intelligence wisdom charisma}
   # Generate the ability mod methods for each score:
   # :strength_modifier, :dexterity_modifier, etc.
