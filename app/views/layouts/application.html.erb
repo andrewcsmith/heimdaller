@@ -7,8 +7,17 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  
+  
 
   <div class="container">
+    <div class="navbar">
+      <a class="navbar-brand" href="#">Heimdaller</a>
+      <ul class="nav">
+        <li <%= set_active_tab('welcome').html_safe %>><a href="/">Home</a></li>
+        <li <%= set_active_tab('characters').html_safe %>><a href="/characters">Characters</a></li>
+      </ul>
+    </div>
     <%= yield %>
   </div>
 
