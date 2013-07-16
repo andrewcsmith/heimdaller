@@ -41,6 +41,15 @@ class CharacterTest < ActiveSupport::TestCase
     assert_equal 10, Character.new.base_wisdom
   end
   
+  def test_that_ability_must_be_integer
+    characters(:valli).base_wisdom = 2.6
+    assert characters(:valli).invalid?
+  end
+  
+  def test_that_ability_must_be_positive
+    
+  end
+  
   def test_save_presence
     assert_equal 2, characters(:valli).base_fortitude
     assert_equal 2, characters(:valli).base_reflex

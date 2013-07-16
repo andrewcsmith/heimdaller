@@ -10,6 +10,7 @@ class Character < ActiveRecord::Base
     define_method "#{ability}_modifier" do
       self.send("base_#{ability}") / 2 - 5
     end
+    validates "base_#{ability}".to_sym, numericality: { only_integer: true, greater_than: 0 }
   end
   
   SAVES = {:fortitude => :constitution, :reflex => :dexterity, :will => :wisdom}
