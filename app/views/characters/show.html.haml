@@ -1,0 +1,53 @@
+%p{ id: "notice" } 
+= notice
+
+%p>
+  %strong My name is 
+  = @character.name + ","
+  %strong but you can call me 
+  = @character.nickname + "."
+
+%p>
+  %strong Level:
+  = @character.level
+
+%h3 Ability Scores
+%table{ id:"ability_table" }
+  %thead
+    %tr
+      %th Ability
+      %th Score
+      %th Mod.
+  %tbody
+    - Character::ABILITIES.each do |ability|
+      %tr
+        %td= ability.capitalize
+        %td= @character.send("base_#{ability}".to_sym)
+        %td= @character.send("#{ability}_modifier".to_sym)
+
+%h3 Saving Throws
+%table{ id:"throws_table" }
+  %thead
+    %tr
+      %th Type
+      %th Total
+      %th Base
+      %th Abil.
+      %th Mag.
+      %th Misc.
+      %th Temp.
+  %tbody
+    - Character::SAVES.each do |save, ability|
+      %tr
+        %td= save.capitalize
+        %td= @character.send("total_#{save}")
+        %td= @character.send("base_#{save}")
+        %td= @character.send("#{ability}_modifier")
+        %td= @character.send("#{save}_magic_modifier")
+        %td= @character.send("#{save}_miscellaneous_modifier")
+        %td= @character.send("#{save}_temporary_modifier")
+
+%br
+
+= link_to 'Edit', edit_character_path(@character) 
+= link_to 'Back', characters_path
