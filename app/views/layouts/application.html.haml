@@ -1,0 +1,16 @@
+%html
+  %head
+    %title Heimdaller
+    = stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true
+    = javascript_include_tag "application", "data-turbolinks-track" => true
+    = csrf_meta_tags
+  %body
+    .container
+      .navbar
+        %a.navbar-brand{ :href => '/' } Heimdaller
+        %ul.nav
+          %li{ :class => ("active" if 'welcome' == params[:controller]) }
+            %a{ href:"/" } Home
+          %li{ :class => ("active" if 'characters' == params[:controller]) }
+            %a{ href:"/characters" } Characters
+      = yield
