@@ -1,6 +1,7 @@
 class Character < ActiveRecord::Base
   # Validates the presence of the three major items
   validates :name, presence: true
+  validates :race, presence: true
   validates :level, numericality: { only_integer: true, greater_than: 0 }
   validates :nickname, presence: true
   

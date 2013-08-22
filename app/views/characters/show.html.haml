@@ -8,8 +8,8 @@
   = @character.nickname + "."
 
 %p>
-  %strong Level:
-  = @character.level
+  %strong I am a level
+  = @character.level.to_s + ' ' + @character.race + '.'
 
 %h3 Ability Scores
 %table.table-condensed.table-bordered{ id:"ability_table" }

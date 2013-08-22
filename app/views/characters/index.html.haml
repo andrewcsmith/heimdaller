@@ -5,6 +5,7 @@
     %tr
       %th Name
       %th Level
+      %th Race
       %th
       %th
       %th
@@ -14,6 +15,7 @@
       %tr
         %td= character.name
         %td= character.level
+        %td= character.race
         %td= link_to 'Show', character
         %td= link_to 'Edit', edit_character_path(character)
         %td= link_to 'Destroy', character, method: :delete, data: { confirm: 'Are you sure?' }

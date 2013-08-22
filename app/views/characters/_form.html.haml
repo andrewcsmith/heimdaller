@@ -1,7 +1,7 @@
 = form_for(@character) do |f|
   = if @character.errors.any? 
     .error_explanation
-      %h2= pluralize(@character.errors.count, "error") + 'prohibited this character from being saved:'
+      %h2= pluralize(@character.errors.count, "error") + ' prohibited this character from being saved:'
       %ul
       = @character.errors.full_messages.each do |msg|
         %li= msg
@@ -14,6 +14,17 @@
     = f.label :nickname 
     %br
     = f.text_field :nickname
+  .field
+    = f.label :race
+    %br
+    = f.select :race, ['Dwarf', 'Elf', 'Half Elf', 'Half Orc', 'Halfling', 'Human']
+    / %select.form-control
+    /   %option Dwarf
+    /   %option Elf
+    /   %option Half Elf
+    /   %option Half Orc
+    /   %option Halfling
+    /   %option Human
   .field
     = f.label :level 
     %br
