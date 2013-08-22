@@ -12,7 +12,7 @@
   = @character.level
 
 %h3 Ability Scores
-%table{ id:"ability_table" }
+%table.table-condensed.table-bordered{ id:"ability_table" }
   %thead
     %tr
       %th Ability
@@ -26,7 +26,7 @@
         %td= @character.send("#{ability}_modifier".to_sym)
 
 %h3 Saving Throws
-%table{ id:"throws_table" }
+%table.table-condensed.table-bordered{ id:"throws_table" }
   %thead
     %tr
       %th Type
@@ -48,6 +48,5 @@
         %td= @character.send("#{save}_temporary_modifier")
 
 %br
-
-= link_to 'Edit', edit_character_path(@character) 
-= link_to 'Back', characters_path
+.btn= link_to 'Edit', edit_character_path(@character) 
+.btn= link_to 'Back', characters_path
