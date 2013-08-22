@@ -1,0 +1,40 @@
+= form_for(@character) do |f|
+  = if @character.errors.any? 
+    .error_explanation
+      %h2= pluralize(@character.errors.count, "error") + 'prohibited this character from being saved:'
+      %ul
+      = @character.errors.full_messages.each do |msg|
+        %li= msg
+
+  .field
+    = f.label :name 
+    %br
+    = f.text_field :name
+  .field
+    = f.label :nickname 
+    %br
+    = f.text_field :nickname
+  .field
+    = f.label :level 
+    %br
+    = f.number_field :level
+  - Character::ABILITIES.each do |ability| 
+    .field
+      = f.label "base_#{ability}".to_sym
+      = f.number_field "base_#{ability}".to_sym
+
+  .field
+    = f.label :base_fortitude
+    = f.number_field :base_fortitude
+  .field
+    = f.label :base_reflex 
+    = f.number_field :base_reflex 
+  .field
+    = f.label :base_will 
+    = f.number_field :base_will 
+  - Character::SAVES.each do |save, ability|
+    - Character::TEMP_TYPES.each do |type|
+      = f.hidden_field "#{save}_#{type}_modifier".to_sym
+
+  .actions
+    = f.submit
