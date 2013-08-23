@@ -19,6 +19,10 @@
     %br
     = f.select :race, ['Dwarf', 'Elf', 'Half Elf', 'Half Orc', 'Halfling', 'Human']
   .field
+    = f.label :alignment
+    %br
+    = f.select :alignment, ['Lawful Good', 'Neutral Good', 'Chaotic Good', 'Lawful Neutral', 'Neutral', 'Chaotic Neutral', 'Lawful Evil', 'Neutral Evil', 'Chaotic Evil']
+  .field
     = f.label :level 
     %br
     = f.number_field :level
