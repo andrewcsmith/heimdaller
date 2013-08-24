@@ -53,10 +53,17 @@ ActiveRecord::Schema.define(version: 20130823152306) do
   create_table "levels", force: true do |t|
     t.string   "class_name"
     t.integer  "level"
+<<<<<<< HEAD
     t.integer  "bab"
     t.integer  "fort_save"
     t.integer  "ref_save"
     t.integer  "will_save"
+=======
+    t.integer  "bab_bonus"
+    t.integer  "fort_save_bonus"
+    t.integer  "ref_save_bonus"
+    t.integer  "will_save_bonus"
+>>>>>>> level-model
     t.string   "notes"
     t.datetime "created_at"
     t.datetime "updated_at"

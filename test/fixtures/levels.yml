@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+barbarian_lvl1:
+  class_name: Barbarian
+  level: 1
+  bab: 1
+  fort_save: 2
+  ref_save: 0
+  will_save: 0
+  notes: MyString
+
+barbarian_lvl2:
+  class_name: Barbarian
+  level: 2
+  bab: 2
+  fort_save: 3
+  ref_save: 0
+  will_save: 0
+  notes: MyString
