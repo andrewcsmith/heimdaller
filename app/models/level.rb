@@ -1,5 +1,4 @@
 class Level < ActiveRecord::Base
-	belongs_to :character
 	validates :class_name, presence: true, format: { with: /\A[a-zA-Z]+\z/,
     message: "only allows letters" }
 	validates :level, numericality: { only_integer: true, greater_than_or_equal_to: 0 }

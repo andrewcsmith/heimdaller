@@ -5,7 +5,8 @@ class Character < ActiveRecord::Base
   validates :alignment, presence: true
   validates :level, numericality: { only_integer: true, greater_than: 0 }
   validates :nickname, presence: true
-  # has_many :levels, dependent: :destroy
+  has_many :relationships, dependent: :destroy
+  has_many :levels, through: :relationships
   
   ABILITIES = %w{strength dexterity constitution intelligence wisdom charisma}
   # Generate the ability mod methods for each score:

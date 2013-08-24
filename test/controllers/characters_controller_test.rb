@@ -42,7 +42,7 @@ class CharactersControllerTest < ActionController::TestCase
 
   test "should destroy character" do
     assert_difference('Character.count', -1) do
-      delete :destroy, id: @character.id
+      delete :destroy, id: @character
     end
 
     assert_redirected_to characters_path
