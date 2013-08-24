@@ -4,6 +4,8 @@ valli:
   name: Valli Heimdaller
   nickname: Valli
   level: 1
+  race: Gnome
+  alignment: True Neutral
   base_strength: 18
   base_dexterity: 14
   base_constitution: 16

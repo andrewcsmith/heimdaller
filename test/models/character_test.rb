@@ -4,7 +4,8 @@ class CharacterTest < ActiveSupport::TestCase
   
   # Verify that a character can be created
   def test_new_character_creation
-    assert Character.create({name: "Valli Heimdaller", nickname: "Valli", level: 6}).valid?
+    assert Character.create({name: "Valli Heimdaller", nickname: "Valli", level: 6, race: "Gnome", alignment: "True Neutral"}).valid?,
+    "Character invalid"
   end
   
   # Verify that Valli exists
@@ -13,27 +14,35 @@ class CharacterTest < ActiveSupport::TestCase
   end
   
   def test_that_name_is_required
-    assert Character.create(name: nil, nickname: "Marty", level: 1).invalid?, "Nameless character is valid"
+    assert Character.create(name: nil, nickname: "Marty", level: 1, race: "Gnome", alignment: "True Neutral").invalid?, "Nameless character is valid"
+  end
+  
+  def test_that_race_is_required
+    assert Character.create(name: "Martinich", nickname: "Marty", level: 1, alignment: "True Neutral").invalid?, "Nameless character is valid"
+  end
+  
+  def test_that_alignment_is_required
+    assert Character.create(name: "Martinich", nickname: "Marty", level: 1, race: "Gnome").invalid?, "Nameless character is valid"
   end
   
   def test_that_level_is_required
-    assert Character.create(name: "Martinich", nickname: "Marty", level: nil).invalid?, "Levelless character is valid"
+    assert Character.create(name: "Martinich", nickname: "Marty", level: nil, race: "Gnome", alignment: "True Neutral").invalid?, "Levelless character is valid"
   end
   
   def test_that_level_must_be_numeric
-    assert Character.create(name: "Martinich", nickname: "Marty", level: "Magic").invalid?, "Test level character is valid"
+    assert Character.create(name: "Martinich", nickname: "Marty", level: "Magic", race: "Gnome", alignment: "True Neutral").invalid?, "Test level character is valid"
   end
   
   def test_that_level_must_be_integer
-    assert Character.create(name: "Martinich", nickname: "Marty", level: 2.6).invalid?, "Test float character is valid"
+    assert Character.create(name: "Martinich", nickname: "Marty", level: 2.6, race: "Gnome", alignment: "True Neutral").invalid?, "Test float character is valid"
   end
   
   def test_that_level_must_be_greater_than_0
-    assert Character.create(name: "Martinich", nickname: "Marty", level: -1).invalid?, "Level number out of range"
+    assert Character.create(name: "Martinich", nickname: "Marty", level: -1, race: "Gnome", alignment: "True Neutral").invalid?, "Level number out of range"
   end
   
   def test_that_nickname_is_required
-    assert Character.create(name: "Martinich", nickname: nil, level: 1).invalid?, "Nicknameless character is valid"
+    assert Character.create(name: "Martinich", nickname: nil, level: 1, race: "Gnome", alignment: "True Neutral").invalid?, "Nicknameless character is valid"
   end
   
   # Verify that unspecified ability values default to 10
