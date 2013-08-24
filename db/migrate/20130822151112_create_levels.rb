@@ -3,10 +3,10 @@ class CreateLevels < ActiveRecord::Migration
     create_table :levels do |t|
       t.string :class_name
       t.integer :level
-      t.integer :bab
-      t.integer :fort_save
-      t.integer :ref_save
-      t.integer :will_save
+      t.integer :bab_bonus
+      t.integer :fort_save_bonus
+      t.integer :ref_save_bonus
+      t.integer :will_save_bonus
       t.string :notes
 
       t.timestamps

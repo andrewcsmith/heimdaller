@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130822151112) do
+ActiveRecord::Schema.define(version: 20130823152306) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,15 +46,17 @@ ActiveRecord::Schema.define(version: 20130822151112) do
     t.integer  "will_magic_modifier",              default: 0
     t.integer  "will_miscellaneous_modifier",      default: 0
     t.integer  "will_temporary_modifier",          default: 0
+    t.string   "race"
+    t.string   "alignment"
   end
 
   create_table "levels", force: true do |t|
     t.string   "class_name"
     t.integer  "level"
-    t.integer  "bab"
-    t.integer  "fort_save"
-    t.integer  "ref_save"
-    t.integer  "will_save"
+    t.integer  "bab_bonus"
+    t.integer  "fort_save_bonus"
+    t.integer  "ref_save_bonus"
+    t.integer  "will_save_bonus"
     t.string   "notes"
     t.datetime "created_at"
     t.datetime "updated_at"

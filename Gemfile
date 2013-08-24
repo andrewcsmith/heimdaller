@@ -41,7 +41,7 @@ group :doc do
 end
 
 group :test do
-  gem 'minitest-rails'
+  gem 'minitest-rails', git: "https://github.com/blowmage/minitest-rails.git"
   gem 'minitest-rails-capybara'
 end
 
