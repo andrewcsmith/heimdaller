@@ -19,7 +19,7 @@ class CharactersControllerTest < ActionController::TestCase
   test "should create character" do
     assert_difference('Character.count') do
       post :create, character: { level: @character.level, name: @character.name,
-      nickname: @character.nickname}
+      nickname: @character.nickname, race: @character.race, alignment: @character.alignment}
     end
 
     assert_redirected_to character_path(assigns(:character))
