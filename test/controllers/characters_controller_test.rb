@@ -2,7 +2,7 @@ require 'test_helper'
 
 class CharactersControllerTest < ActionController::TestCase
   setup do
-    @character = characters(:one)
+    @character = characters(:valli)
   end
 
   test "should get index" do
@@ -18,7 +18,8 @@ class CharactersControllerTest < ActionController::TestCase
 
   test "should create character" do
     assert_difference('Character.count') do
-      post :create, character: { level: @character.level, name: @character.name }
+      post :create, character: { level: @character.level, name: @character.name,
+      nickname: @character.nickname}
     end
 
     assert_redirected_to character_path(assigns(:character))
@@ -41,7 +42,7 @@ class CharactersControllerTest < ActionController::TestCase
 
   test "should destroy character" do
     assert_difference('Character.count', -1) do
-      delete :destroy, id: @character
+      delete :destroy, id: @character.id
     end
 
     assert_redirected_to characters_path
