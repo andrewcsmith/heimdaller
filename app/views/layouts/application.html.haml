@@ -6,9 +6,9 @@
     = csrf_meta_tags
   %body
     .container
-      .navbar
+      %nav.navbar.navbar-default
         %a.navbar-brand{ :href => '/' } Heimdaller
-        %ul.nav
+        %ul.nav.navbar-nav
           %li{ :class => ("active" if 'welcome' == params[:controller]) }
             %a{ href:"/" } Home
           %li{ :class => ("active" if 'characters' == params[:controller]) }

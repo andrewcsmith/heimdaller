@@ -1,4 +1,4 @@
-= form_for(@character) do |f|
+= form_for @character do |f|
   = if @character.errors.any? 
     .error_explanation
       %h2= pluralize(@character.errors.count, "error") + ' prohibited this character from being saved:'
@@ -6,40 +6,40 @@
       = @character.errors.full_messages.each do |msg|
         %li= msg
 
-  .field
+  .field.form-group
     = f.label :name 
     %br
-    = f.text_field :name
-  .field
+    = f.text_field :name, {:class => "form-control"}
+  .field.form-group
     = f.label :nickname 
     %br
-    = f.text_field :nickname
+    = f.text_field :nickname, {:class => "form-control"}
   .field
     = f.label :race
     %br
-    = f.select :race, ['Dwarf', 'Elf', 'Half Elf', 'Half Orc', 'Halfling', 'Human']
+    = f.select :race, ['Dwarf', 'Elf', 'Half Elf', 'Half Orc', 'Halfling', 'Human'], {}, {:class => "form-control"}
   .field
     = f.label :alignment
     %br
-    = f.select :alignment, ['Lawful Good', 'Neutral Good', 'Chaotic Good', 'Lawful Neutral', 'Neutral', 'Chaotic Neutral', 'Lawful Evil', 'Neutral Evil', 'Chaotic Evil']
+    = f.select :alignment, ['Lawful Good', 'Neutral Good', 'Chaotic Good', 'Lawful Neutral', 'Neutral', 'Chaotic Neutral', 'Lawful Evil', 'Neutral Evil', 'Chaotic Evil'], {}, {:class => "form-control"}
   .field
     = f.label :level 
     %br
-    = f.number_field :level
+    = f.number_field :level, {:class => "form-control"}
   - Character::ABILITIES.each do |ability| 
     .field
       = f.label "base_#{ability}".to_sym
-      = f.number_field "base_#{ability}".to_sym
+      = f.number_field "base_#{ability}".to_sym, {:class => "form-control"}
 
   .field
     = f.label :base_fortitude
-    = f.number_field :base_fortitude
+    = f.number_field :base_fortitude, {:class => "form-control"}
   .field
     = f.label :base_reflex 
-    = f.number_field :base_reflex 
+    = f.number_field :base_reflex, {:class => "form-control"}
   .field
     = f.label :base_will 
-    = f.number_field :base_will 
+    = f.number_field :base_will, {:class => "form-control"}
   - Character::SAVES.each do |save, ability|
     - Character::TEMP_TYPES.each do |type|
       = f.hidden_field "#{save}_#{type}_modifier".to_sym
