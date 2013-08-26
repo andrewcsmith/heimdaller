@@ -5,7 +5,7 @@ class Character < ActiveRecord::Base
   validates :alignment, presence: true
   validates :level, numericality: { only_integer: true, greater_than: 0 }
   validates :nickname, presence: true
-  has_many :relationships, dependent: :destroy
+  has_many :relationships, foreign_key: "character_id", dependent: :destroy
   has_many :levels, through: :relationships
   
   ABILITIES = %w{strength dexterity constitution intelligence wisdom charisma}
@@ -19,7 +19,7 @@ class Character < ActiveRecord::Base
     validates "base_#{ability}", numericality: { only_integer: true, greater_than: 0 }
   end
   
-  SAVES = {:fortitude => :constitution, :reflex => :dexterity, :will => :wisdom}
+  SAVES = { :fortitude => :constitution, :reflex => :dexterity, :will => :wisdom }
   TEMP_TYPES = %w{magic miscellaneous temporary}
   # Create the variables for all modifiers
   SAVES.each do |save, ability|
@@ -37,5 +37,38 @@ class Character < ActiveRecord::Base
       # puts "\n\nMODS: ab: #{ability_mod}\tmg: #{magic_mod}\tmc: #{misc_mod}\ttp:  #{temp_mod}\n\n"
       base + ability_mod + magic_mod + misc_mod + temp_mod
     end
+  end
+
+  def add_level(char_class_to_lvl)
+    char_class_to_lvl.capitalize!.to_s # ensure request is in correct format
+    # information we have: character to level, requested class to level
+    # First, check if char already has level(s) in requested class
+    relationships.each do |relationship|
+      @class = Level.find_by(id: relationship.level_id)
+      # @class corresponds to instance of the Level model pointed to by relationship.
+      # from here, we can get class_name and integer level
+      if @class.class_name == char_class_to_lvl
+        # if this is the case, increase rank, don't add new class
+        if @class.level < 20
+          # If class is not max level, destroy current rank and create next rank
+          relationships.create!(level_id: @class.id + 1)
+          relationships.destroy(level_id: @class.id)
+        else
+          # prompt max level and ask for a different one
+          puts "That class is already max level"
+        end
+      else
+        relationships.create!(level_id: @class.id)
+      end
+    end
+    # redirect_to edit_character_path
+  end
+
+  def char_level
+    lvl = 0
+    relationships.each do |relationship|
+      lvl += Level.find_by(id: relationship.level_id).level
+    end    
+    return lvl
   end
 end

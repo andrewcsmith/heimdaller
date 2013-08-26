@@ -63,7 +63,7 @@ ActiveRecord::Schema.define(version: 20130824212537) do
   end
 
   create_table "relationships", force: true do |t|
-    t.integer "character_id"
+    t.integer  "character_id"
     t.integer  "level_id"
     t.datetime "created_at"
     t.datetime "updated_at"
