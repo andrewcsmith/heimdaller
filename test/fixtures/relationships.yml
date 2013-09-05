@@ -1,7 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
+  character_id: 1
   level_id: 1
 
 two:
-  level_id: 1
+  character_id: 1
+  level_id: 2

@@ -40,28 +40,39 @@ class Character < ActiveRecord::Base
   end
 
   def add_level(char_class_to_lvl)
-    char_class_to_lvl.capitalize!.to_s # ensure request is in correct format
+    char_class_to_lvl = char_class_to_lvl.capitalize.to_s # ensure request is in correct format
     # information we have: character to level, requested class to level
-    # First, check if char already has level(s) in requested class
-    relationships.each do |relationship|
-      @class = Level.find_by(id: relationship.level_id)
-      # @class corresponds to instance of the Level model pointed to by relationship.
-      # from here, we can get class_name and integer level
-      if @class.class_name == char_class_to_lvl
-        # if this is the case, increase rank, don't add new class
-        if @class.level < 20
-          # If class is not max level, destroy current rank and create next rank
-          relationships.create!(level_id: @class.id + 1)
-          relationships.destroy(level_id: @class.id)
+    @req_class = Level.find_by(class_name: char_class_to_lvl)
+    if relationships.empty?
+      relationships.create(level_id: @req_class.id)
+    else
+      # First, check if char already has level(s) in requested class
+      relationships.each do |relationship|
+        @rel_class = Level.find_by(id: relationship.level_id)
+        # @class corresponds to instance of the Level model pointed to by relationship.
+        # from here, we can get class_name and integer level
+        if @rel_class.class_name == char_class_to_lvl
+          # if this is the case, increase rank, don't add new class
+          if @rel_class.level < 20
+            puts 'class level < 20. adding level to requested class'
+            # If class is not max level, destroy current rank and create next rank
+            relationships.delete(Relationship.find(relationship.id))
+            relationships.create(level_id: Level.find(relationship.level_id+1).id)
+          else
+            # prompt max level and ask for a different class to level
+            # this functionality will likely end up in a different place
+            puts "That class is already max level"
+          end
         else
-          # prompt max level and ask for a different one
-          puts "That class is already max level"
+          # if not, add new class
+          puts 'adding first level of requested novel class'
+          relationships.create(level_id: @req_class.id)
         end
-      else
-        relationships.create!(level_id: @class.id)
       end
     end
-    # redirect_to edit_character_path
+    relationships.each do |r|
+      puts r.level_id
+    end
   end
 
   def char_level

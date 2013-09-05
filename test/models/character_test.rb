@@ -96,4 +96,10 @@ class CharacterTest < ActiveSupport::TestCase
     characters(:valli).fortitude_miscellaneous_modifier = 1
     assert_equal 9, characters(:valli).total_fortitude
   end
+
+  # Verify that the .add_level character model method works
+  def test_char_level_method
+    # characters(:valli).relationships.create(level_id: 1)
+    assert_equal 1, characters(:valli).char_level
+  end 
 end
