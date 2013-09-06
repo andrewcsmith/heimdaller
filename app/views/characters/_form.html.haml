@@ -17,11 +17,11 @@
   .field
     = f.label :race
     %br
-    = f.select :race, ['Dwarf', 'Elf', 'Half Elf', 'Half Orc', 'Halfling', 'Human'], {}, {:class => "form-control"}
+    = f.select :race, [nil,'Dwarf', 'Elf', 'Half Elf', 'Half Orc', 'Halfling', 'Human'], {}, {:class => "form-control"}
   .field
     = f.label :alignment
     %br
-    = f.select :alignment, ['Lawful Good', 'Neutral Good', 'Chaotic Good', 'Lawful Neutral', 'Neutral', 'Chaotic Neutral', 'Lawful Evil', 'Neutral Evil', 'Chaotic Evil'], {}, {:class => "form-control"}
+    = f.select :alignment, [nil,'Lawful Good', 'Neutral Good', 'Chaotic Good', 'Lawful Neutral', 'Neutral', 'Chaotic Neutral', 'Lawful Evil', 'Neutral Evil', 'Chaotic Evil'], {}, {:class => "form-control"}
   .field
     = f.label :level 
     %br

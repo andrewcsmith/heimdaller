@@ -4,7 +4,8 @@ class CharacterTest < ActiveSupport::TestCase
   
   # Verify that a character can be created
   def test_new_character_creation
-    assert Character.create({name: "Valli Heimdaller", nickname: "Valli", level: 6}).valid?
+    assert Character.create({name: "Valli Heimdaller", nickname: "Valli", level: 6,
+      race: "Gnome", alignment: "Neutral"}).valid?
   end
   
   # Verify that Valli exists
@@ -95,4 +96,10 @@ class CharacterTest < ActiveSupport::TestCase
     characters(:valli).fortitude_miscellaneous_modifier = 1
     assert_equal 9, characters(:valli).total_fortitude
   end
+
+  # Verify that the .add_level character model method works
+  def test_char_level_method
+    # characters(:valli).relationships.create(level_id: 1)
+    assert_equal 1, characters(:valli).char_level
+  end 
 end
